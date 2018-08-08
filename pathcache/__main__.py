@@ -29,7 +29,7 @@ if __name__ == "__main__":
         help='Eviction policy', default="lru", choices=["lru"])
 
     parser.add_argument(
-        '--size', type=int, dest='size',
+        '-size', type=int, dest='size',
         required=True, action='store', help='Max size for the folder')
 
     parser.add_argument('path', metavar='path', help='Path to use as cache')
