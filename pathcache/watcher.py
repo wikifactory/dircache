@@ -33,8 +33,6 @@ class Handler(FileSystemEventHandler):
         if event.is_directory or event.event_type == "deleted":
             return
 
-        print(event.event_type)
-
         self.cache.new_file_event(event)
 
         return
