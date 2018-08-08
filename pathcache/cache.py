@@ -46,8 +46,8 @@ class LRUCache(Cache):
             key=lambda x: x[1].st_atime,
             reverse=True)
 
+        logging.info("Over size limit, looking for eviction candidates")
         while current_size > self.maxsize:
-            logging.info("Over size limit, looking for eviction candidates")
             candidate_filename, candidate_stats = file_stats.pop()
 
             accessed_date = datetime.fromtimestamp(candidate_stats.st_atime)
@@ -55,8 +55,8 @@ class LRUCache(Cache):
 
             logging.info(
                 f"Deleting {candidate_filename}."
-                f"Last accessed {accessed_date}."
-                f"Claiming {candidate_stats.st_size}B back.")
+                f" Last accessed {accessed_date}."
+                f" Claiming {candidate_stats.st_size}B back.")
             os.remove(candidate_filename)
 
             current_size -= candidate_stats.st_size
