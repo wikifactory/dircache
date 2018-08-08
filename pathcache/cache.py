@@ -2,6 +2,8 @@ import os
 import sys
 import logging
 
+from datetime import datetime
+
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 
@@ -48,9 +50,12 @@ class LRUCache(Cache):
             logging.info("Over size limit, looking for eviction candidates")
             candidate_filename, candidate_stats = file_stats.pop()
 
+            accessed_date = datetime.fromtimestamp(candidate_stats.st_atime)
+            accessed_date = accessed_date.isoformat()
+
             logging.info(
                 f"Deleting {candidate_filename}."
-                f"Last accessed {candidate_stats.st_atime}."
+                f"Last accessed {accessed_date}."
                 f"Claiming {candidate_stats.st_size}B back.")
             os.remove(candidate_filename)
 
