@@ -1,3 +1,5 @@
+import sys
+import os
 import argparse
 
 from .watcher import Watcher
@@ -5,6 +7,12 @@ from .cache import LRUCache
 
 
 def start_watching(args):
+    if not os.path.exists(args.path):
+        sys.exit("{} doesn't exist".format(args.path))
+
+    if not os.path.isdir(args.path):
+        sys.exit("{} is not a directory".format(args.path))
+        
     cache = LRUCache(args.path, args.size)
     w = Watcher(args.path, cache)
     w.run()
