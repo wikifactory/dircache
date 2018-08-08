@@ -32,7 +32,7 @@ class Cache:
 
 class LRUCache(Cache):
 
-    def new_file_event(self, event):
+    def new_file_event(self, event=None):
         current_size = self.get_path_size()
         if current_size <= self.maxsize:
             logging.info("New file added. Space limit not reached.")

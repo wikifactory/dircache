@@ -12,9 +12,13 @@ def start_watching(args):
 
     if not os.path.isdir(args.path):
         sys.exit("{} is not a directory".format(args.path))
-        
+
     cache = LRUCache(args.path, args.size)
     w = Watcher(args.path, cache)
+
+    # Do a first checkup on the directory, don't wait for any events
+    cache.new_file_event()
+
     w.run()
 
 
