@@ -3,6 +3,9 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 
+BUSY_LOOP_WAIT = 2
+
+
 class Watcher:
     def __init__(self, path, cache):
         self.path = path
@@ -15,7 +18,7 @@ class Watcher:
         self.observer.start()
         try:
             while True:
-                time.sleep(1)
+                time.sleep(BUSY_LOOP_WAIT)
         except:
             self.observer.stop()
             print("Error")
