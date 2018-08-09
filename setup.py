@@ -4,7 +4,7 @@ VERSION = ""
 tests_require = []
 
 setup(
-    name="pypathcache",
+    name="diskcache",
     version=VERSION,
     description="File system directory cache",
     long_description=open("README.md").read(),
@@ -14,7 +14,7 @@ setup(
         "Topic :: Software Development :: Libraries",
         "Programming Language :: Python :: 3.6",
     ],
-    keywords="filesystem cache lru folder",
+    keywords="filesystem cache lru dir directory folder",
     packages=find_packages(exclude=["tests"]),
     install_requires=[
         "watchdog==0.8.3",
